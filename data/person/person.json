@@ -1,0 +1,12 @@
+{
+    "name": "Alice",
+    "age": "25",
+    "city": "New York",
+    "isStudent": "false",
+    "skills": "['Golang', 'Python', 'JavaScript']",
+    "favorites": {
+        "color": "blue",
+        "food": "pizza",
+        "number": "7"
+    }
+}
