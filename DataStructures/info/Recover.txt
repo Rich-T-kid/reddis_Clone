@@ -1,0 +1,6 @@
+Hash Table is being constructed2024-11-04 18:59:29
+Set richard:baah
+Get richard
+Hash Table is being constructed2024-11-04 19:00:08
+Set richard:baah
+Get richard

@@ -167,7 +167,7 @@ func (h *HashTable) Get(key string) (bool, interface{}) {
 func (h *HashTable) SetKey(key string, value interface{}) {
 	var RecoveryMessage = fmt.Sprintf("Set %s:%v\n", key, value)
 	h.RecoverLog.Write([]byte(RecoveryMessage))
-	if h.exist(key) {
+	if h.Exist(key) {
 		h.Collective[key] = value
 		return
 	} else {
@@ -190,7 +190,7 @@ func (h *HashTable) DeleteKey(inputkey string) error {
 	return errors.New("key doesnt exist to delete")
 }
 
-func (h *HashTable) exist(key string) bool {
+func (h *HashTable) Exist(key string) bool {
 	if _, ok := h.Collective[key]; ok {
 		return true
 	} else {
@@ -212,4 +212,85 @@ func (h *HashTable) Keys() []string {
 		res = append(res, k)
 	}
 	return res
+}
+func (h *HashTable) Increment(key string) error {
+	if h.Exist(key) && isNumber(h.Collective[key]) {
+		switch v := h.Collective[key].(type) {
+		case int:
+			h.Collective[key] = v + 1
+		case int8:
+			h.Collective[key] = v + 1
+		case int16:
+			h.Collective[key] = v + 1
+		case int32:
+			h.Collective[key] = v + 1
+		case int64:
+			h.Collective[key] = v + 1
+		case uint:
+			h.Collective[key] = v + 1
+		case uint8:
+			h.Collective[key] = v + 1
+		case uint16:
+			h.Collective[key] = v + 1
+		case uint32:
+			h.Collective[key] = v + 1
+		case uint64:
+			h.Collective[key] = v + 1
+		case float32:
+			h.Collective[key] = v + 1.0
+		case float64:
+			h.Collective[key] = v + 1.0
+		default:
+			return errors.New("unsupported numeric type")
+		}
+	} else {
+		return errors.New("invalid key to increment. either it doesn't exist or isn't of a numeric type")
+	}
+	return nil
+}
+
+func (h *HashTable) Decrement(key string) error {
+	if h.Exist(key) && isNumber(h.Collective[key]) {
+		switch v := h.Collective[key].(type) {
+		case int:
+			h.Collective[key] = v - 1
+		case int8:
+			h.Collective[key] = v - 1
+		case int16:
+			h.Collective[key] = v - 1
+		case int32:
+			h.Collective[key] = v - 1
+		case int64:
+			h.Collective[key] = v - 1
+		case uint:
+			h.Collective[key] = v - 1
+		case uint8:
+			h.Collective[key] = v - 1
+		case uint16:
+			h.Collective[key] = v - 1
+		case uint32:
+			h.Collective[key] = v - 1
+		case uint64:
+			h.Collective[key] = v - 1
+		case float32:
+			h.Collective[key] = v - 1.0
+		case float64:
+			h.Collective[key] = v - 1.0
+		default:
+			return errors.New("unsupported numeric type")
+		}
+	} else {
+		return errors.New("invalid key to increment. Either it doesn't exist or isn't of a numeric type")
+	}
+	return nil
+}
+func isNumber(value interface{}) bool {
+	switch value.(type) {
+	case int, int8, int16, int32, int64, // Signed integers
+		uint, uint8, uint16, uint32, uint64, // Unsigned integers
+		float32, float64: // Floating-point numbers
+		return true
+	default:
+		return false
+	}
 }

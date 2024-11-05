@@ -51,3 +51,9 @@ func (s *Set) Elements() []string {
 	}
 	return elements
 }
+
+func NewSet() *Set {
+	return &Set{
+		items: make(map[string]bool),
+	}
+}

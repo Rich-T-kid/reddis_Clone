@@ -1,28 +1,114 @@
-Hash Table is being constructed2024-11-03 10:24:49
-Set type:shit
-Set rich:richard
-Hash Table is being constructed2024-11-03 10:25:27
+Hash Table is being constructed2024-11-04 18:06:33
 Set type:shit
 Set rich:richard
 Get rich
 Get r
-Hash Table is being constructed2024-11-03 10:26:12
+Hash Table is being constructed2024-11-04 18:08:22
 Set type:shit
 Set rich:richard
 Get rich
-Get r
-Hash Table is being constructed2024-11-03 10:28:28
+All Keys 22
+Hash Table is being constructed2024-11-04 18:08:54
 Set type:shit
 Set rich:richard
 Get rich
-Get r
-Hash Table is being constructed2024-11-03 10:30:29
+All Keys 54
+Hash Table is being constructed2024-11-04 18:09:44
 Set type:shit
 Set rich:richard
 Get rich
-Get r
-Hash Table is being constructed2024-11-03 10:31:23
+All Keys 44
+Remove ri
+Remove rich
+All Keys 44
+Hash Table is being constructed2024-11-04 18:11:11
 Set type:shit
 Set rich:richard
 Get rich
-Get r
+All Keys 11
+Remove ri
+Remove rich
+All Keys 11
+Hash Table is being constructed2024-11-04 18:11:25
+Set type:shit
+Set rich:richard
+Get rich
+All Keys 25
+Remove ri
+Remove rich
+All Keys 25
+Hash Table is being constructed2024-11-04 18:12:30
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+All Keys 30
+Hash Table is being constructed2024-11-04 18:12:33
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+All Keys 33
+Hash Table is being constructed2024-11-04 18:31:11
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+Set rich:5
+Get rich
+Get rich
+All Keys 11
+Hash Table is being constructed2024-11-04 18:31:56
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+Set rich:5
+Get rich
+Get rich
+All Keys 56
+Hash Table is being constructed2024-11-04 18:32:09
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+Set rich:5
+Get rich
+Get rich
+All Keys 9
+Hash Table is being constructed2024-11-04 18:32:22
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+Set rich:5
+Get rich
+Get rich
+All Keys 22
+Hash Table is being constructed2024-11-04 18:32:35
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+Set rich:5
+Get rich
+Get rich
+All Keys 35
+Hash Table is being constructed2024-11-04 18:32:53
+Set type:shit
+Set rich:richard
+Get rich
+Remove ri
+Remove rich
+Set rich:5
+Get rich
+Set bob:square
+Get rich
+All Keys 53
