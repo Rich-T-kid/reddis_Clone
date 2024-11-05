@@ -8,23 +8,23 @@ import (
 // Define a struct to represent the JSON data
 func main() {
 	reddis := DataStructures.ConfigHashMap("_Storage", "Data")
-	defer reddis.PersistData(reddis.Collective, reddis.Storage)
-	reddis.SetKey("type", "shit")
-	reddis.SetKey("rich", "richard")
-	reddis.Get("rich")
-	reddis.DeleteKey("ri")
-	reddis.DeleteKey("rich")
-	reddis.SetKey("rich", 5)
-	fmt.Println(reddis.Get("rich"))
-	for i := 0; i < 3; i++ {
-		reddis.Increment("rich")
-	}
-	reddis.Decrement("rich")
-	reddis.SetKey("bob", "square")
-	fmt.Println(reddis.Decrement("bob"))
-	reddis.Increment("tob")
-	fmt.Println(reddis.Get("rich"))
+	defer reddis.Finish()
+	/*
+		reddis.SetKey("type", "shit")
+		reddis.SetKey("rich", "richard")
+		reddis.SetKeyTTL("Molly", "richard", time.Second)
+		reddis.SetKey("lucki", "best")
 
-	fmt.Println(reddis.Keys())
+		reddis.SetKeyTTL("neptun", "dest", 5*time.Second)
+		reddis.SetKeyTTL("KingBeast", "Den of lions", 5*time.Second)
+		reddis.SetKeyTTL("futur", "guapo", 12*time.Second)
+		fmt.Println(reddis.KeysAndTTL())
+		reddis.UpdateTTl("neptun", 4*time.Second)
+		fmt.Println(reddis.KeysAndTTL())
+		time.Sleep(3 * time.Second)
+		fmt.Println(reddis.KeysAndTTL())
+		//fmt.Println(reddis.Get("Molly"))
+	*/
+	fmt.Println(reddis.KeysAndTTL())
 
 }

@@ -6,9 +6,9 @@ import (
 )
 
 type HardDisk struct {
-	persitance *os.File
+	persitance []*os.File
 	directory  string
-	fileName   string
+	fileNames  []string
 }
 type hashTableStats struct {
 	size      int

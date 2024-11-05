@@ -29,6 +29,7 @@ func (s *Set) AddElement(element string) error {
 func (s *Set) RemoveElemnt(element string) error {
 	for key := range s.items {
 		if element == key {
+			s.size--
 			delete(s.items, key)
 		}
 	}
@@ -38,6 +39,7 @@ func (s *Set) RemoveElemnt(element string) error {
 func (s *Set) Clear() error {
 	emptyMap := make(map[string]bool)
 	s.items = emptyMap
+	s.size = 0
 	return nil
 }
 func (s *Set) isEmpty() bool {

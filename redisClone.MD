@@ -30,22 +30,18 @@ For a basic Redis-like implementation in Go, here are 5-7 essential operations t
    - **Use Case**: Useful for counters, rate limiting, or any numeric value updates.
    - **Example**: `INCR counter` → `1`, `INCR counter` → `2`
 
-### 7. **HSET / HGET (Hash Set / Hash Get)**
-   - **Description**: Sets and retrieves fields within a hash data structure for a key.
-   - **Use Case**: Similar to a dictionary or hash table within a key, allowing for organized multi-field values.
-   - **Example**: `HSET user:100 name "Alice" age "30"`, `HGET user:100 name` → `"Alice"`
 
-### 8. **SADD (Set Add)**
+### 7. **SADD (Set Add)**
    - **Description**: Adds an element to a set associated with a key.
    - **Use Case**: Useful for maintaining collections of unique values.
    - **Example**: `SADD setKey "value"`
 
-### 9. **SREM (Set Remove)**
+### 8. **SREM (Set Remove)**
    - **Description**: Removes an element from a set.
    - **Use Case**: Keeps sets clean by removing unnecessary elements.
    - **Example**: `SREM setKey "value"`
 
-### 10. **SMEMBERS**
+### 9. **SMEMBERS**
    - **Description**: Retrieves all elements of a set associated with a key.
    - **Use Case**: Useful for accessing all unique values in a collection.
    - **Example**: `SMEMBERS setKey`
