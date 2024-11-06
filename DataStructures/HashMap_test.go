@@ -141,6 +141,95 @@ func TestKeys(t *testing.T) {
 		}
 	}
 }
+func TestSadd(t *testing.T) {
+	h := setupHashTable()
+	err := h.Sadd("testSet", "value1", "value2", "value3")
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if h.SCard("testSet") != 3 {
+		t.Errorf("Expected 3 elements, got %d", h.SCard("testSet"))
+	}
+}
+
+func TestIsMember(t *testing.T) {
+	h := setupHashTable()
+	h.Sadd("testSet", "value1", "value2")
+	isMember, err := h.IsMember("testSet", "value1")
+	if err != nil || !isMember {
+		t.Errorf("Expected value1 to be a member, got error: %v", err)
+	}
+	isMember, err = h.IsMember("testSet", "nonExistentValue")
+	if err != nil || isMember {
+		t.Errorf("Expected nonExistentValue not to be a member, got: %v", isMember)
+	}
+}
+
+func TestSmembers(t *testing.T) {
+	h := setupHashTable()
+	h.Sadd("testSet", "value1", "value2", "value3")
+	members := h.Smembers("testSet")
+	expectedMembers := []string{"value1", "value2", "value3"}
+	if len(members) != len(expectedMembers) {
+		t.Errorf("Expected %d members, got %d", len(expectedMembers), len(members))
+	}
+	for _, val := range expectedMembers {
+		found := false
+		for _, member := range members {
+			if member == val {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Errorf("Expected member %s not found in %v", val, members)
+		}
+	}
+}
+
+func TestSRem(t *testing.T) {
+	h := setupHashTable()
+	h.Sadd("testSet", "value1", "value2")
+	err := h.SRem("testSet", "value1")
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	isMember, err := h.IsMember("testSet", "value1")
+	if err != nil || isMember {
+		t.Errorf("Expected value1 to be removed from set, but it still exists")
+	}
+
+	err = h.SRem("testSet", "nonExistentValue")
+	if err == nil {
+		t.Errorf("Expected error for non-existent member, but got none")
+	}
+}
+
+func TestSCard(t *testing.T) {
+	h := setupHashTable()
+	if h.SCard("testSet") != 0 {
+		t.Errorf("Expected 0 elements, got %d", h.SCard("testSet"))
+	}
+	h.Sadd("testSet", "value1", "value2")
+	if h.SCard("testSet") != 2 {
+		t.Errorf("Expected 2 elements, got %d", h.SCard("testSet"))
+	}
+	h.SRem("testSet", "value1")
+	if h.SCard("testSet") != 1 {
+		t.Errorf("Expected 1 element after removal, got %d", h.SCard("testSet"))
+	}
+}
+
+func TestSetExist(t *testing.T) {
+	h := setupHashTable()
+	if h.SetExist("nonExistentSet") {
+		t.Errorf("Expected set not to exist")
+	}
+	h.Sadd("newSet", "value1")
+	if !h.SetExist("newSet") {
+		t.Errorf("Expected set to exist after adding elements")
+	}
+}
 
 /*
 func TestUpdateTTL(t *testing.T) {

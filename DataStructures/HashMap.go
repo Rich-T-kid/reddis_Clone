@@ -49,7 +49,7 @@ func (h *HashTable) loadHashTable(hashTable map[string]interface{}, storage *Har
 
 }
 func (h *HashTable) loadTuples(tupleMap map[string]*Tuple, storage *HardDisk, idx int) {
-	filePath := filepath.Join(storage.directory, storage.fileNames[1])
+	filePath := filepath.Join(storage.directory, storage.fileNames[idx])
 	file, err := os.Open(filePath)
 	if err != nil {
 		panic("error had occured opening the file")
@@ -68,6 +68,26 @@ func (h *HashTable) loadTuples(tupleMap map[string]*Tuple, storage *HardDisk, id
 	}
 	fmt.Println("filled in Tuple table")
 }
+func (h *HashTable) loadSets(Sets map[string]*Set, storage *HardDisk, idx int) {
+	filePath := filepath.Join(storage.directory, storage.fileNames[idx])
+	file, err := os.Open(filePath)
+	if err != nil {
+		panic("error had occured opening the file")
+	}
+	defer file.Close()
+
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&Sets)
+	if err != nil {
+		if err == io.EOF {
+			fmt.Println("The current hardDrive for the cache is empty")
+			return
+		}
+		fmt.Println("Error reading JSON data:", err)
+		return
+	}
+	fmt.Println("filled in Set Structs table")
+}
 
 /*
 writes the current hash table data to the Secondary storages to perist inbetween program exeuction
@@ -82,7 +102,7 @@ func (h *HashTable) persistData(sourceData interface{}, storage *HardDisk, idx i
 	encoder := json.NewEncoder(file)
 	encoder.SetIndent("", "  ")
 	if err := encoder.Encode(sourceData); err != nil {
-		panic("error writing to 	stoarge")
+		panic("error writing to stoarge")
 	}
 	fmt.Println("Done updating json file for persistant storage")
 
@@ -142,6 +162,7 @@ func createHashTableStat() *hashTableStats {
 func (h *HashTable) Finish() {
 	h.persistData(h.Collective, h.Storage, 0)
 	h.persistData(h.key_TTL, h.Storage, 1)
+	h.persistData(h.Sets, h.Storage, 2)
 }
 func createTable(storage *HardDisk) *HashTable {
 	const dirPath = "info"
@@ -205,8 +226,11 @@ func ConfigHashMap(directory, filename string) *HashTable {
 	table := createTable(stroage)
 	storeHashTable(table)
 	addFile("TTL_times.json", stroage)
+	addFile("Set_structs.json", stroage)
 	table.loadHashTable(table.Collective, table.Storage, 0)
 	table.loadTuples(table.key_TTL, table.Storage, 1)
+	table.loadSets(table.Sets, table.Storage, 2)
+	fmt.Println(table.Sets["myset"])
 	return table
 }
 
@@ -382,29 +406,68 @@ func (h *HashTable) Decrement(key string) error {
 	return nil
 }
 
+const SetDoesntExist = "set doesnt exist"
+
 // SADD setname value1, value2, value3, ... ect
-func (h *HashTable) Sadd(key string, elements ...string) error {
+func (h *HashTable) Sadd(setkey string, elements ...string) error {
+	if !h.SetExist(setkey) {
+		h.Sets[setkey] = NewSet()
+	}
+	set := h.Sets[setkey]
+	for _, element := range elements {
+		set.AddElement(element)
+	}
 	return nil
 }
 
 // is element a member
-func (h *HashTable) IsMember(key, element string) bool {
-	return false
+func (h *HashTable) IsMember(setkey, element string) (bool, error) {
+	if !h.SetExist(setkey) {
+		return false, errors.New(SetDoesntExist)
+	}
+	set := h.Sets[setkey]
+	return set.exist(element), nil
+
 }
 
 // all members
-func (h *HashTable) Smembers(key string) []string {
-	return nil
+func (h *HashTable) Smembers(setkey string) []string {
+	var result []string
+	if !h.SetExist(setkey) {
+		return result
+	}
+	set := h.Sets[setkey]
+	for k := range set.Items {
+		result = append(result, k)
+	}
+	return result
+
 }
 
 // remove member / members
-func (h *HashTable) SRem(key, member string) error {
-	return nil
+func (h *HashTable) SRem(setkey, member string) error {
+	if !h.SetExist(setkey) {
+		return errors.New(SetDoesntExist)
+	}
+	set := h.Sets[setkey]
+	if set.exist(member) {
+		delete(h.Sets, member)
+		return nil
+	}
+	return errors.New("key doesnt exist in set")
 }
 
 // # of elements in set
-func (h *HashTable) SCard(key string) int {
-	return 4
+func (h *HashTable) SCard(setkey string) int {
+	if !h.SetExist(setkey) {
+		return 0
+	}
+	set := h.Sets[setkey]
+	return set.Size
+}
+func (h *HashTable) SetExist(setkey string) bool {
+	_, ok := h.Sets[setkey]
+	return ok
 }
 
 func isNumber(value interface{}) bool {
