@@ -43,8 +43,8 @@ func TestAddElement(t *testing.T) {
 	if !set.exist("first") {
 		t.Error("Element 'first' should exist after adding")
 	}
-	if set.Size != 1 {
-		t.Errorf("Expected size 1, got %d", set.Size)
+	if set.Size() != 1 {
+		t.Errorf("Expected size 1, got %d", set.Size())
 	}
 
 	// Test adding an existing element
@@ -52,8 +52,8 @@ func TestAddElement(t *testing.T) {
 	if err != nil {
 		t.Errorf("AddElement() returned an error when adding an existing element: %v", err)
 	}
-	if set.Size != 1 {
-		t.Errorf("Size should not change when adding an existing element; expected 1, got %d", set.Size)
+	if set.Size() != 1 {
+		t.Errorf("Size should not change when adding an existing element; expected 1, got %d", set.Size())
 	}
 }
 
@@ -67,8 +67,8 @@ func TestRemoveElement(t *testing.T) {
 	if set.exist("first") {
 		t.Error("Element 'first' should not exist after removing")
 	}
-	if set.Size != 0 {
-		t.Errorf("Expected size 0, got %d", set.Size)
+	if set.Size() != 0 {
+		t.Errorf("Expected size 0, got %d", set.Size())
 	}
 
 	// Test removing a non-existing element

@@ -20,6 +20,7 @@ type HashTable struct {
 	Collective map[string]interface{} //  user will have their own dict
 	key_TTL    map[string]*Tuple      `json:"-"`
 	Sets       map[string]*Set
+	append_Log []string // keep an array of all operations in order to reconstruct the hashtable
 	ErrorLog   *os.File
 	RecoverLog *os.File
 	Storage    *HardDisk
@@ -451,7 +452,9 @@ func (h *HashTable) SRem(setkey, member string) error {
 	}
 	set := h.Sets[setkey]
 	if set.exist(member) {
-		delete(h.Sets, member)
+		fmt.Println("this needs to be deleted ", member)
+		set.RemoveElemnt(member)
+		//delete(h.Sets, member)
 		return nil
 	}
 	return errors.New("key doesnt exist in set")
@@ -463,7 +466,7 @@ func (h *HashTable) SCard(setkey string) int {
 		return 0
 	}
 	set := h.Sets[setkey]
-	return set.Size
+	return set.Size()
 }
 func (h *HashTable) SetExist(setkey string) bool {
 	_, ok := h.Sets[setkey]

@@ -377,4 +377,60 @@ Remove futur
 Remove neptun
 Hash Table is being constructed2024-11-05 02:13:59
 All Keys 59
-Clearing Dead Keys 2024-11-05 02:13:59
+Clearing Dead Keys 2024-11-05 02:13:59Hash Table is being constructed2024-11-06 13:48:54
+All Keys 54
+Clearing Dead Keys 2024-11-06 13:48:54Hash Table is being constructed2024-11-06 13:49:01
+All Keys 1
+Clearing Dead Keys 2024-11-06 13:49:01Hash Table is being constructed2024-11-06 13:49:15
+Hash Table is being constructed2024-11-06 13:49:53
+Hash Table is being constructed2024-11-06 13:50:09
+Hash Table is being constructed2024-11-06 13:53:44
+Hash Table is being constructed2024-11-06 13:55:35
+Hash Table is being constructed2024-11-06 13:56:43
+Hash Table is being constructed2024-11-06 13:57:21
+Hash Table is being constructed2024-11-06 13:57:30
+Hash Table is being constructed2024-11-06 13:57:50
+Hash Table is being constructed2024-11-06 13:58:36
+Hash Table is being constructed2024-11-06 13:58:51
+Hash Table is being constructed2024-11-06 13:59:08
+Hash Table is being constructed2024-11-06 14:00:02
+Hash Table is being constructed2024-11-06 14:00:14
+Hash Table is being constructed2024-11-06 14:00:32
+Hash Table is being constructed2024-11-06 14:00:44
+Hash Table is being constructed2024-11-06 14:02:06
+Hash Table is being constructed2024-11-06 14:03:00
+Hash Table is being constructed2024-11-06 14:03:37
+Hash Table is being constructed2024-11-06 14:03:51
+Hash Table is being constructed2024-11-06 14:04:21
+Hash Table is being constructed2024-11-06 14:05:02
+Hash Table is being constructed2024-11-06 14:05:51
+Hash Table is being constructed2024-11-06 14:07:21
+Hash Table is being constructed2024-11-06 14:07:32
+Hash Table is being constructed2024-11-06 14:08:12
+Hash Table is being constructed2024-11-06 14:08:36
+Hash Table is being constructed2024-11-06 14:08:58
+Hash Table is being constructed2024-11-06 14:10:11
+Hash Table is being constructed2024-11-06 14:10:20
+Hash Table is being constructed2024-11-06 14:11:52
+Hash Table is being constructed2024-11-06 14:12:10
+Hash Table is being constructed2024-11-06 14:12:28
+Hash Table is being constructed2024-11-06 14:13:39
+Hash Table is being constructed2024-11-06 14:17:52
+Hash Table is being constructed2024-11-06 14:18:07
+Set type:shit
+Set rich:richard
+Set Molly:richard TTL:1 
+Set lucki:best
+Set neptun:dest TTL:5 
+Set KingBeast:Den of lions TTL:5 
+Set futur:guapo TTL:12 
+All Keys 7
+Clearing Dead Keys 2024-11-06 14:18:07Updating TTL neptun:4
+All Keys 7
+Clearing Dead Keys 2024-11-06 14:18:07All Keys 10
+Clearing Dead Keys 2024-11-06 14:18:10Remove Molly
+Hash Table is being constructed2024-11-07 21:10:15
+All Keys 15
+Clearing Dead Keys 2024-11-07 21:10:15Remove KingBeast
+Remove futur
+Remove neptun

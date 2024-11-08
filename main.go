@@ -9,7 +9,9 @@ import (
 func main() {
 	reddis := DataStructures.ConfigHashMap("_Storage", "Data")
 	defer reddis.Finish()
+	fmt.Println(reddis.Keys())
 	/*
+		fmt.Println("persistnaces check ", reddis.Smembers("myset"))
 		reddis.SetKey("type", "shit")
 		reddis.SetKey("rich", "richard")
 		reddis.SetKeyTTL("Molly", "richard", time.Second)
@@ -23,8 +25,7 @@ func main() {
 		fmt.Println(reddis.KeysAndTTL())
 		time.Sleep(3 * time.Second)
 		fmt.Println(reddis.KeysAndTTL())
-		//fmt.Println(reddis.Get("Molly"))
 	*/
-	fmt.Println(reddis.KeysAndTTL())
+	//fmt.Println(reddis.Get("Molly"))
 
 }

@@ -1,0 +1,9 @@
+{
+  "myset": {
+    "items": {
+      "fourth": false,
+      "master": false,
+      "second": false
+    }
+  }
+}
